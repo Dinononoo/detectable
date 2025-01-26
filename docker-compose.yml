@@ -10,17 +10,19 @@ services:
     volumes:
       - ./:/var/www
       - ./php.ini:/usr/local/etc/php/php.ini
-      - ./uploads:/var/www/public/uploads
-      - ./debug:/var/www/debug
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+      - OPCACHE_ENABLE=1
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
     networks:
       - schedule-network
     depends_on:
       - db
-    command: >
-      bash -c "
-        php artisan migrate --force &&
-        php-fpm
-      "
 
   nginx:
     image: nginx:alpine
@@ -30,7 +32,12 @@ services:
       - "80:80"
     volumes:
       - ./:/var/www
-      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
     networks:
       - schedule-network
     depends_on:
@@ -42,9 +49,9 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: laravel
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_PASSWORD: root
       MYSQL_USER: laravel
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
     volumes:
       - dbdata:/var/lib/mysql
     ports:

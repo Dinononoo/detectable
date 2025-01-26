@@ -90,11 +90,11 @@
         }
 
         .status-info .available {
-            background: linear-gradient(45deg, #98FB98, #32CD32);
+            background: linear-gradient(45deg, #32cd32, #32CD32);
         }
 
         .status-info .unavailable {
-            background: linear-gradient(45deg, #FF7F7F, #FF0000);
+            background: linear-gradient(45deg,#ff0000, #FF0000);
         }
 
         .back-button {
@@ -291,8 +291,8 @@
         <!-- Top-right section -->
         <div class="top-right">
             <div class="status-info">
-                <span class="available">สีเขียว: ว่าง</span>
-                <span class="unavailable">สีแดง: ไม่ว่าง</span>
+                <span class="available">ว่าง</span>
+                <span class="unavailable">ไม่ว่าง</span>
             </div>
             <a href="{{ route('report.show') }}" class="report-button">
                 <img src="https://cdn-icons-png.flaticon.com/512/9716/9716941.png" alt="Report Icon">
