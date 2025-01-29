@@ -1,7 +1,7 @@
 .git/
 .gitignore
 .gitattributes
-.env*
+
 *.log
 .idea/
 .vscode/
@@ -16,7 +16,3 @@ storage/framework/views/*
 storage/logs/*
 bootstrap/cache/*
 tests/
-docker/
-docker-compose*
-README.md
-phpunit.xml 
